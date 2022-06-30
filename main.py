@@ -1,4 +1,4 @@
-from create_pdf import invoice
+from invoice_template import invoice
 
 pdf = invoice()
 pdf.add_page()
