@@ -1,18 +1,18 @@
-from invoice_template import invoice
-
-def generate_invoice(details, charges, number):
-    customer, lab, account = details
-    materials, time, core = charges
-
-    pdf = invoice()
-    pdf.add_page()
-    pdf.set_font('helvetica', 'B', 10)
-    pdf.cell(30, None, 'Bill to:', align = 'L')
-    pdf.cell(175, None, 'Date:', align = 'R')
-    pdf.output(number+'.pdf')
+from pdf_templates import invoice, quote
 
 details = ('Stephen Branch', 'Spence', '123456')
-charges = (10, 15, 20)
-number = ('test')
+charges = [
+    ['Labor', 12, 1, 12],
+    ['Consulting', 10, 0, 0],
+    ['Post-processing', 15, 1, 15],
+    ['Print time', 9.10, 1, 9.10], 
+    ['VeroClear', 0.25, 10, 2.5],
+    ['SUP706B', 0.1, 20, 2]
+]
+number = 'test'
 
-generate_invoice(details, charges, number)
+pdf = invoice()
+pdf.generate_invoice(details, charges, number)
+
+pdf2 = quote()
+pdf2.generate_quote(('Test cust.', 'PI'), charges)
