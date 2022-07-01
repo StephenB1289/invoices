@@ -68,6 +68,7 @@ class invoice(FPDF):
         self.set_font('helvetica', '', 10)
         
         for i, item in enumerate(charges):
+            print(charges)
             if charges[i][2] != 0:
                 self.cell(260/4, 5, charges[i][0], align = 'L', border = True)
                 self.cell(260/4, 5, f'${charges[i][1]:.2f}', align = 'C', border = True)
@@ -184,4 +185,4 @@ class quote(FPDF):
         self.cell(260/4, None, 'Total:', align = 'C')
         self.cell(0, None, f'${sum([x[3] for x in charges]):.2f}', align = 'C')
 
-        self.output(f'quote.pdf')
+        self.output(f'{customer}_quote.pdf')
