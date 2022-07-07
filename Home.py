@@ -2,7 +2,7 @@ import streamlit as st
 
 st.title('Welcome!')
 
-st.write('Authorized users only. Please authenticate:')
+st.write('Authorized users only! Please authenticate:')
 
 import streamlit as st
 
