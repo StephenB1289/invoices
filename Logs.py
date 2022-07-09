@@ -1,3 +1,4 @@
+from numpy import NaN
 import streamlit as st
 from google.oauth2 import service_account
 import pygsheets
@@ -13,5 +14,5 @@ client = pygsheets.authorize(custom_credentials = credentials)
 
 sheet = client.open_by_url(st.secrets['sheet_url'])
 
-data = sheet.sheet1.get_as_df()
+data = sheet.sheet1.get_as_df(empty_value = 0)
 
