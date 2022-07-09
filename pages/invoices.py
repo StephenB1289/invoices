@@ -1,6 +1,8 @@
 import streamlit as st
 from pdf_templates import invoice
 import pricing
+import Logs
+from datetime import date
 
 st.title('Invoices')
 
@@ -79,6 +81,8 @@ if check_password():
 
         for resin in materials:
             charges.append([resin, pricing.materials[resin], st.session_state[resin], st.session_state[resin]*pricing.materials[resin]])
+
+        Logs.insert(charges)
 
         pdf = invoice()
         pdf.generate_invoice(details, charges, number)
