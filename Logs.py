@@ -48,8 +48,23 @@ def insert(details, charges):
         'Lab': details[1],
         'Account #': details[2]}
 
+    mat_cost, print_cost, core_cost = 0, 0, 0
+
     for charge in charges:
         values[charge[0]] = charge[2]
+
+        if charge[0] in ['Labor', 'Consulting', 'Post-Processing']:
+            core_cost += charge[3]
+        elif charge[0] == 'Print Time':
+            print_cost = charge[3]
+        else:
+            mat_cost += charge[3]
+
+
+    values['Material Cost'] = mat_cost
+    values['Printer Cost'] = print_cost
+    values['Core Cost'] = core_cost
+    values['Total Cost'] = mat_cost + print_cost + core_cost
 
     data = pd.concat([data, pd.DataFrame([values])], ignore_index = True)
 
