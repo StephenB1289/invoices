@@ -37,35 +37,39 @@ def check_password():
 
 if check_password():
     col1, col2, col3 = st.columns(3)
+    col4, col5 = st.columns(2)
+    col6, col7, col8 = st.columns(3)
 
     with col1:
         name = st.text_input('Customer Name:')
-        labor = st.number_input('Labor:', min_value = 0, max_value = 1, step = 1, value = 0)
-        hours = st.number_input('Print hours:', min_value = 0, step = 1, value = 0)
-
     with col2:
         lab = st.text_input('Customer Lab:')
-        consulting = st.number_input('Consulting:', min_value= 0.0, step = 0.5, value = 0.0)
-        minutes = st.number_input('Print minutes:', min_value = 0, max_value = 60, step = 1, value = 0)
-
     with col3:
         account = st.text_input('Account #:')
+    with col4:
+        hours = st.number_input('Print hours:', min_value = 0, step = 1, value = 0)
+    with col5:
+        minutes = st.number_input('Print minutes:', min_value = 0, max_value = 60, step = 1, value = 0)
+    with col6:
+        labor = st.radio('Labor fee:', options = [False, True])
+    with col7:
+        consulting = st.number_input('Consulting:', min_value= 0.0, step = 0.5, value = 0.0)
+    with col8:
         processing = st.number_input('Post-Processing:', min_value = 0.0, step = 0.5, value = 0.0)
-        number = st.text_input('Invoice #')
 
     materials = st.multiselect('Materials used:', pricing.materials.keys())
 
-    col4, col5, col6 = st.columns(3)
+    col9, col10, col11 = st.columns(3)
 
     for i, resin in enumerate(materials):
         if i % 3 == 0:
-            with col4:
+            with col9:
                 st.number_input(resin, min_value = 0, step = 1, value = 0, key = resin)
         elif i % 3 == 1:
-            with col5:
+            with col10:
                 st.number_input(resin, min_value = 0, step = 1, value = 0, key = resin)
         else:
-            with col6:
+            with col11:
                 st.number_input(resin, min_value = 0, step = 1, value = 0, key = resin)
 
     run = st.button('Generate Invoice')
