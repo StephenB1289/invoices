@@ -3,6 +3,7 @@ from pdf_templates import invoice
 import pricing
 import Logs
 from datetime import date
+import Logs
 
 st.title('Invoices')
 
@@ -75,14 +76,14 @@ if check_password():
         charges = [
             ['Labor', pricing.core['Labor'], labor, labor*pricing.core['Labor']],
             ['Consulting', pricing.core['Consulting'], consulting, consulting*pricing.core['Consulting']],
-            ['Post-processing', pricing.core['Processing'], processing, processing*pricing.core['Processing']],
-            ['Print time', pricing.core['Printing'], (hours + minutes/60), (hours + minutes/60)*pricing.core['Printing']]
+            ['Post-Processing', pricing.core['Processing'], processing, processing*pricing.core['Processing']],
+            ['Print Time', pricing.core['Printing'], (hours + minutes/60), (hours + minutes/60)*pricing.core['Printing']]
         ]
 
         for resin in materials:
             charges.append([resin, pricing.materials[resin], st.session_state[resin], st.session_state[resin]*pricing.materials[resin]])
 
-        Logs.insert(charges)
+        number = Logs.insert(details, charges)
 
         pdf = invoice()
         pdf.generate_invoice(details, charges, number)
