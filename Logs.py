@@ -34,7 +34,7 @@ def insert(details, charges):
 
     data = sheet.sheet1.get_as_df(empty_value = 0)
 
-    if data['Invoice'].values:
+    if np.any(data['Invoice'].values):
         last_num = data['Invoice'].values[-1]
     else:
         last_num = ''
