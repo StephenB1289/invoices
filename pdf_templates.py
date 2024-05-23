@@ -127,12 +127,6 @@ class quote(FPDF):
 
     def footer(self):
         self.set_y(-30)
-        self.set_font("helvetica", 'B', 10)
-        self.cell(0, None, 'Contact Information:', align = 'C')
-        self.ln(5)
-        self.set_font('helvetica', '', 10)
-        self.multi_cell(0, None, 'Stephen Branch\nPhone: (517) 353-1116\nEmail: branchs1@msu.edu', align = 'C')
-        self.ln(6)
         self.set_font('helvetica', 'B', 12)
         self.cell(0, None, 'Thank you for using IQ Core services!', align = 'C')
 
